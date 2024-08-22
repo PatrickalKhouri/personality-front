@@ -1,16 +1,38 @@
 import React, { useState } from 'react';
 import Modal from './components/Modal'
+import axios from 'axios';
 import './App.css';
 
-function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export interface Questions {
+  id: Number;
+  question: String;
+  answers: Answers;
+}
 
-  const openModal = () => {
+export interface Answers {
+  id: Number;
+  answer: String;
+  score: Number;
+}
+
+function App() {
+  const [isModalOpen, setIsModalOpen] = useState<Boolean>(false);
+  const [questions, setQuestions] = useState<Questions[]>([]);
+
+  const url = 'http://localhost:4000'
+  const backOfficeToken = process.env.REACT_APP_BACKOFFICE_KEY
+
+  const openModal = async () => {
+    const response = await axios.get(`${url}/questions`, { headers: {'backoffice_key' : backOfficeToken}})
+    if (response.data) {
+      setQuestions(response.data)
+    }
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setQuestions([])
   };
 
 
@@ -27,7 +49,7 @@ function App() {
           Start Test
         </button>
       </header>
-      {isModalOpen && <Modal closeModal={closeModal} />}
+      {isModalOpen && <Modal closeModal={closeModal} questions={questions}/>}
     </div>
   );
 }
