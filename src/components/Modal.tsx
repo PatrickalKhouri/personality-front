@@ -7,7 +7,6 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ closeModal, questions }) => {
-  console.log(questions)
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-[#FEFEE3] p-6 rounded-lg shadow-lg w-full max-w-md md:max-w-2xl">
