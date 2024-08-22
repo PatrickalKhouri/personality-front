@@ -3,19 +3,12 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="text-center">
+      <header className="bg-[#FEFEE3] min-h-screen flex flex-col items-center justify-center text-[#D68C45]">
+        <h3 className='md:text-[100px] text-[40px]'> 
+          Are you an introvert or an extrovert?
+        </h3>
+        <p>By Patrick Al Khouri</p>
       </header>
     </div>
   );
