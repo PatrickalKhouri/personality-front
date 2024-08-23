@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.fade-in {
+    @apply opacity-100;
+  }
+  
+.fade-out {
+@apply opacity-0;
+}

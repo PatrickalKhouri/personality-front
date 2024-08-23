@@ -4,15 +4,15 @@ import axios from 'axios';
 import './App.css';
 
 export interface Questions {
-  id: Number;
-  question: String;
-  answers: Answers;
+  id: number;
+  question: string;
+  answers: Answers[];
 }
 
 export interface Answers {
-  id: Number;
-  answer: String;
-  score: Number;
+  id: number;
+  answer: string;
+  score: number;
 }
 
 function App() {
