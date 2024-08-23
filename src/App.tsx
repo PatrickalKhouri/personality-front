@@ -23,7 +23,7 @@ function App() {
   const backOfficeToken = process.env.REACT_APP_BACKOFFICE_KEY
 
   const openModal = async () => {
-    const response = await axios.get(`${url}/questions`, { headers: {'backoffice_key' : backOfficeToken}})
+    const response = await axios.get(`${url}/questions/random`, { headers: {'backoffice_key' : backOfficeToken}})
     if (response.data) {
       setQuestions(response.data)
     }
