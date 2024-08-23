@@ -20,13 +20,9 @@ const Modal: React.FC<ModalProps> = ({ closeModal, questions }) => {
         [questionId]: answerId,
       }));
       setTotalScore(totalScore + answerScore);
-      if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-      } else {
-        console.log('Quiz completed with answers:', totalScore);
-      }
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
       setFade('fade-in');
-    }, 500); // 500ms matches the duration of the animation
+    }, 500);
   };
 
   const currentQuestion = questions[currentQuestionIndex];
@@ -35,20 +31,29 @@ const Modal: React.FC<ModalProps> = ({ closeModal, questions }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-[#FEFEE3] p-6 rounded-lg shadow-lg w-full max-w-md md:max-w-2xl">
         <div className={`transition-opacity duration-500 ${fade}`}>
-          <h2 className="text-2xl mb-4">
-            {currentQuestionIndex + 1}. {currentQuestion.question}
-          </h2>
-          <div>
+          {currentQuestionIndex === questions.length && (
+            <div>
+              Quiz encerrado, sua nota: {totalScore}
+            </div>
+          )}
+          {currentQuestionIndex < questions.length && (
+            <div>
+              <h2 className="text-2xl mb-4">
+                {currentQuestionIndex + 1}. {currentQuestion.question}
+              </h2>
+              <div>
             {currentQuestion.answers.map((answer: any) => (
               <button
                 key={answer.id}
                 onClick={() => handleAnswerSelect(currentQuestion.id, answer.id, answer.score)}
-                className="block w-full text-left mb-2 px-4 py-2 bg-[#D68C45] text-[#FEFEE3] rounded"
+                className="block w-full text-left mb-2 px-4 py-2 bg-[#D68C45] text-[#FEFEE3] rounded hover:bg-[#E29C5A]"
               >
                 {answer.answer}
               </button>
-            ))}
-          </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
         <button 
           onClick={closeModal} 
